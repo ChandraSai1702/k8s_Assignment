@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-webapp-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: java-webapp
+  template:
+    metadata:
+      labels:
+        app: java-webapp
+    spec:
+      containers:
+      - name: java-webapp
+        image: chandrasaid/java-webapp:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: JAVA_OPTS
+          value: "-Djava.security.egd=file:/dev/./urandom"
